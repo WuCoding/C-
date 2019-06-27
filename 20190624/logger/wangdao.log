@@ -1,0 +1,12 @@
+2019-06-25 10:38:46,915 [ERROR] error message
+2019-06-25 10:38:46,916 [WARN] warn message
+2019-06-25 10:38:46,916 [INFO] info message
+2019-06-25 10:38:46,917 [DEBUG] debug message
+2019-06-25 10:38:46,918 [ERROR] [TestMylogger.cc:test2:40]error message
+2019-06-25 10:38:46,918 [WARN] [TestMylogger.cc:test2:41]warn message
+2019-06-25 10:38:46,918 [INFO] [TestMylogger.cc:test2:42]info message
+2019-06-25 10:38:46,919 [DEBUG] [TestMylogger.cc:test2:43]debug message
+2019-06-25 10:38:46,919 [ERROR] [TestMylogger.cc:test3:49]error message
+2019-06-25 10:38:46,919 [WARN] [TestMylogger.cc:test3:51]warn message
+2019-06-25 10:38:46,919 [INFO] [TestMylogger.cc:test3:52]info message
+2019-06-25 10:38:46,919 [DEBUG] [TestMylogger.cc:test3:53]debug message
