@@ -1,0 +1,11 @@
+dragon ninja iceman lion wolf
+iceman lion wolf ninja dragon
+lion dragon ninja iceman wolf
+2
+99 10 1000
+12 22 32 42 52
+11 21 31 41 51
+60 20 2000
+33 34 35 36 37
+23 33 43 53 63
+
