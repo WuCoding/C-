@@ -61,4 +61,7 @@ class EventLoop
 		TcpConnectionCallback _onConnection;
 		TcpConnectionCallback _onMessage;
 		TcpConnectionCallback _onClose;
-}
+};
+}//end of namespace wd
+
+#endif
