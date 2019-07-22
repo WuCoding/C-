@@ -1,0 +1,40 @@
+#include "Socket.h"
+
+#include <unistd.h>
+#include <stdio.h>
+#include <errno.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+
+namespace wd
+{
+
+	Socket::Socket()
+	{
+		_fd=socket(AF_INET,SOCK_STREAM,0);
+		if(_fd==-1){
+			perror("socket");
+		}
+	}
+
+	Socket::Socket(int fd)
+	: _fd(fd)
+	{}
+
+	int Socket::fd() const
+	{
+		return _fd;
+	}
+
+	void Socket::shutdownWrite()
+	{
+		//shutdown()是指禁止在一个套接口上进行数据的接受与发送
+		//该语句表示禁止在该套接口上进行写操作
+		::shutdown(_fd,SHUT_WR);
+	}
+
+	Socket::~Socket()
+	{
+		::close(_fd);
+	}
+}//end of namespace wd
