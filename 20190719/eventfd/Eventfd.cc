@@ -57,7 +57,7 @@ Eventfd::Eventfd(EventCallback &&cb)
 	-1：  
 		>poll函数调用失败，同时会自动设置全局变量errno；
 #endif
-void Eventfd::start()//运行在线程B
+void Eventfd::start()//运行在线程B（子线程）
 {
 	_isStarted=true;
 
@@ -85,7 +85,7 @@ void Eventfd::start()//运行在线程B
 			//获得了已就绪的描述符
 			if(pfd.revents & POLLIN){
 				//判断该描述符是否是处于可读状态
-				handlRead();//执行读操作，获得计数器counter的值
+				handleRead();//执行读操作，获得计数器counter的值
 				if(_cb){//表示有回调函数
 					//执行回调函数
 					_cb();
@@ -96,7 +96,7 @@ void Eventfd::start()//运行在线程B
 }
 
 //停止函数
-void Eventfd::stop()
+void Eventfd::stop()//运行在A线程（主线程）
 {
 	if(_isStarted){
 		_isStarted=false;
@@ -143,7 +143,7 @@ void Eventfd::stop()
 //		>这个操作不用说了。
 
 //在计数器counter上增加8字节的整数
-int Eventfd::wakeup()//运行在线程A
+void Eventfd::wakeup()//运行在线程A（主线程）
 {
 	uint64_t one=1;
 	//向计数器增加数字
@@ -168,6 +168,7 @@ void Eventfd::handleRead()
 	//用来存储计数器counter的值
 	uint64_t howmany;
 	int ret=::read(_fd,&howmany,sizeof(uint64_t));
+	cout<<"howmany="<<howmany<<endl;
 	if(ret!=sizeof(howmany)){
 		perror(">> read");
 	}
