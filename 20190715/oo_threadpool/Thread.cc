@@ -6,40 +6,37 @@ using std::endl;
 
 namespace wd
 {
-//线程启动函数
+
 void Thread::start()
 {
-	//创建子线程
+	//创建线程
 	pthread_create(&_pthid,nullptr,threadfunc,this);
-	//改变线程启动标志位
 	_isRunning=true;
 }
 
-//子线程执行函数
-void * Thread::threadfunc(void *arg)//传入参数为this指针
+void *Thread::threadfunc(void *arg)
 {
-	//将传入参数强制类型转换
+	//强制类型转换
 	Thread *pthread=static_cast<Thread*>(arg);
-	if(pthread){
-		//执行回调函数
-		pthread->_cb();
+	if(pthread){//如果pthread存在
+		//执行run()函数
+		pthread->run();
 	}
-
 	return nullptr;
 }
 
 //线程回收函数
 void Thread::join()
 {
-	if(_isRunning){//该线程已经启动
-		pthread_join(_pthid,nullptr);
+	if(_isRunning){//如果该子线程已经启动
+		pthread_join(_pthid,nullptr);//将该子线程进行回收
 	}
 }
 
-//析构函数实现
+//析构函数
 Thread::~Thread()
 {
-	if(_isRunning){
+	if(_isRunning){//如果该子线程已经运行
 		pthread_detach(_pthid);
 	}
 }

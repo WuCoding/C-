@@ -3,12 +3,12 @@
 #include "Noncopyable.h"
 
 #include <pthread.h>
+
 #include <functional>
 using std::function;
 
 namespace wd
 {
-
 //具体类
 class Thread
 : Noncopyable  //不写继承方式则为默认继承方式private
